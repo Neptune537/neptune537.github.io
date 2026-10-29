@@ -512,7 +512,7 @@ function doPost(e) {
             "Your identity has been successfully registered on the Atlantis & Lemuria network.\n\n" +
             "• Sovereign DID: " + (payload.did || "did:atlantis:verified") + "\n" +
             "• Network Tier: Tier 2 (Pelagic Worker)\n" +
-            "• Access Gateway: https://tritonsama.github.io/\n\n" +
+            "• Access Gateway: https://neptune537.github.io/\n\n" +
             "— Atlantis Citadel Command & Lemuria Engine";
           MailApp.sendEmail(userEmail, clientSubject, clientBody);
         }

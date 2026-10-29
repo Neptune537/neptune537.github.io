@@ -1,6 +1,6 @@
 # HBLite — Atlantis & Lemuria Network Client
 
-**Live Deployment:** [tritonsama.github.io](https://tritonsama.github.io/) | **Local Dev:** `http://localhost:8000/`
+**Live Deployment:** [neptune537.github.io](https://neptune537.github.io/) | **Local Dev:** `http://localhost:8000/`
 
 **HBLite** is the universal edge client, task & service marketplace, and modular command HUD built exclusively on the **Atlantis** and **Lemuria** network architecture.
 
