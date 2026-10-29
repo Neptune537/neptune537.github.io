@@ -489,6 +489,37 @@ function doPost(e) {
 
       betaSheet.appendRow(rowData);
 
+      // Email Notification to Admin Overseer on New Registration
+      try {
+        var adminNotifyEmail = "blue-aquarius@live.com";
+        var subject = "👑 HBLite Registration Notification: " + (payload.name || "New Operative");
+        var body = "Greetings Citadel Overseer,\n\n" +
+          "A new client identity has registered on the Atlantis & Lemuria network via HBLite:\n\n" +
+          "• Name / Callsign: " + (payload.name || "N/A") + (isAdmin ? " [ADMIN]" : "") + "\n" +
+          "• Email: " + userEmail + "\n" +
+          "• Phone: " + (payload.phone || "N/A") + "\n" +
+          "• Network Role: " + userRole + "\n" +
+          "• Atlantis DID: " + (payload.did || "N/A") + "\n" +
+          "• Timestamp: " + ts + "\n\n" +
+          "— Atlantis Citadel Core Automations\nHBLite Network Suite";
+
+        MailApp.sendEmail(adminNotifyEmail, subject, body);
+
+        // Also send confirmation copy to the registrant if they provided a valid email
+        if (userEmail && userEmail.indexOf("@") !== -1 && userEmail.toLowerCase() !== adminNotifyEmail) {
+          var clientSubject = "Welcome to Atlantis & Lemuria — Identity Provisioned (" + (payload.did || "HBLite") + ")";
+          var clientBody = "Greetings " + (payload.name || "Client") + ",\n\n" +
+            "Your identity has been successfully registered on the Atlantis & Lemuria network.\n\n" +
+            "• Sovereign DID: " + (payload.did || "did:atlantis:verified") + "\n" +
+            "• Network Tier: Tier 2 (Pelagic Worker)\n" +
+            "• Access Gateway: https://tritonsama.github.io/\n\n" +
+            "— Atlantis Citadel Command & Lemuria Engine";
+          MailApp.sendEmail(userEmail, clientSubject, clientBody);
+        }
+      } catch (mailErr) {
+        Logger.log("Email notification notice: " + mailErr.toString());
+      }
+
       return jsonResponse({
         result: "success",
         status: "success",

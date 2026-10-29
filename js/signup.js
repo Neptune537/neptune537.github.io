@@ -96,7 +96,7 @@ if (signupForm) {
     const phone = document.getElementById("phone") ? document.getElementById("phone").value.trim() : "";
 
     if (!name || !email || !password) {
-      showStatus("Please fill in your name, email address, and access passkey.", "error");
+      showStatus("Please fill in your name, email address, and password.", "error");
       return;
     }
 
@@ -106,7 +106,7 @@ if (signupForm) {
     }
 
     if (password.length < 6) {
-      showStatus("Access passkey must be at least 6 characters.", "error");
+      showStatus("Password must be at least 6 characters.", "error");
       return;
     }
 
@@ -201,7 +201,7 @@ if (loginForm) {
     const password = document.getElementById("loginPassword").value;
 
     if (!identifier || !password) {
-      showStatus("Please enter both your Email / Atlantis DID and passkey.", "error");
+      showStatus("Please enter both your Email / Atlantis DID and password.", "error");
       return;
     }
 
@@ -209,7 +209,7 @@ if (loginForm) {
 
     const existing = findRegisteredUser(identifier);
     if (existing && existing.password && existing.password !== password) {
-      showStatus("Invalid passkey for this registered account.", "error");
+      showStatus("Invalid password for this registered account.", "error");
       if (loginSubmitBtn) loginSubmitBtn.disabled = false;
       return;
     }
